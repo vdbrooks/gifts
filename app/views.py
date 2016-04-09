@@ -7,14 +7,14 @@ from app import app
 def signup():
     error = None
     if request.method == 'POST':
-        try:
-            new_user = User(request.form['username'], request.form['email'],request.form['password'])
-            db.session.add(new_user)
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
-            db.session.flush()
-            return 'Username already in use'
+        #try:
+        #    new_user = User(request.form['username'], request.form['email'],request.form['password'])
+        #    db.session.add(new_user)
+        #    db.session.commit()
+        #except Exception as e:
+        #    db.session.rollback()
+        #    db.session.flush()
+        #    return 'Username already in use'
         return "Storing new user: {}".format(request.form['email'])
 
     else:
