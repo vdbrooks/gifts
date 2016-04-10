@@ -5,6 +5,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(320), unique=False)
+    giftees = db.relationship('Giftee', backref='user', lazy='dynamic')
 
     #def __init__(self, username, email, password):
     #    self.username = username
@@ -19,6 +20,7 @@ class Giftee(db.Model):
     nickname = db.Column(db.String(80), unique=False)
     gender = db.Column(db.String(7), unique=False)
     age = db.Column(db.Integer, unique=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return '<Giftee %r>' % (self.nickname)
