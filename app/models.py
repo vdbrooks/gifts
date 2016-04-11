@@ -5,7 +5,7 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(320), unique=False)
-    giftees = db.relationship('Giftee', backref='user', lazy='dynamic')
+    giftees = db.relationship('Giftee', backref='gifter', lazy='dynamic')
 
     #def __init__(self, username, email, password):
     #    self.username = username
