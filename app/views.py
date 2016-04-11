@@ -14,7 +14,6 @@ def signup():
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            #db.session.flush()
             return 'Username already in use'
         return "Storing new user: {}".format(request.form['email'])
 
