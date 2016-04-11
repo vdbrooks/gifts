@@ -2,19 +2,20 @@ from flask import Flask, request, session, url_for, redirect, \
      render_template, abort, g, flash, _app_ctx_stack
 from werkzeug import check_password_hash, generate_password_hash
 from app import app
+from app import db, models
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
     error = None
     if request.method == 'POST':
-        #try:
-        #    new_user = User(request.form['username'], request.form['email'],request.form['password'])
-        #    db.session.add(new_user)
-        #    db.session.commit()
-        #except Exception as e:
-        #    db.session.rollback()
-        #    db.session.flush()
-        #    return 'Username already in use'
+        try:
+            u = models.User(username=request.form['username'], email=request.form['email'], password=request.form['password'])
+            db.session.add(u)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            db.session.flush()
+            return 'Username already in use'
         return "Storing new user: {}".format(request.form['email'])
 
     else:
