@@ -10,7 +10,7 @@ class User(db.Model):
 
     @property
     def password(self):
-        raise AttributeError('Bro, you\'re not allowed to read plain text passwords')
+        raise AttributeError('Password is implemented through a write-only property. So no plain text reads for you, sucka!')
 
     @password.setter
     def password(self, password):
